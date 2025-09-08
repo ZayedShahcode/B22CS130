@@ -3,10 +3,29 @@ import {Log} from  "../../../logging_middleware/logging";
 
 
 export const UrlShortener = () => {
-  try{
-    const handleOnSubmit = async(e) => {
+  
+  
+  
+  
+  const [formData, setFormData] = useState({
+    url: '',
+    validity: '',
+    shortcode: ''
+  })
+  
+  const [shortURl, setShortURL] = useState('') 
+  
+  const handleOnChange = (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:5000/shorturls',{
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+  const handleOnSubmit = async(e) => {
+    try{
+      e.preventDefault();
+      const response = await fetch('http://localhost:5000/shorturls',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -16,27 +35,9 @@ export const UrlShortener = () => {
     const data = await response.json();
     setShortURL(data.newURL);
     console.log(data);
-  }
-  catch(err){
-    Log("fronend","error","page","Cannot Create Url")
-  }
-
-  }
-
-  const [formData, setFormData] = useState({
-    url: '',
-    validity: '',
-    shortcode: ''
-  })
-
-  const [shortURl, setShortURL] = useState('') 
-
-  const handleOnChange = (e) => {
-    e.preventDefault();
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    }
+    catch(err){
+      Log("frontend","error","page","Cannot Shorten URL")
   }
 
   return (
