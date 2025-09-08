@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {Log} from  "../../../logging_middleware/logging";
+// import {Log} from  "../../../logging_middleware/logging";
 
 export interface URLS {
     _id: string;
@@ -25,7 +25,8 @@ export const Statistics = () => {
                 console.log(data);
             }
             catch(err){
-                Log("frontend","error","page","Cannot Fetch Statistics")
+                // Log("frontend","error","page","Cannot Fetch Statistics")
+                console.error("Cannot Fetch Statistics")
             }
         }
         fetchData();

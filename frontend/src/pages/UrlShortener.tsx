@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import {Log} from  "../../../logging_middleware/logging";
+// import {Log} from  "../../../logging_middleware/logging";
 
 
 export const UrlShortener = () => {
-  
-  
-  
   
   const [formData, setFormData] = useState({
     url: '',
@@ -37,11 +34,13 @@ export const UrlShortener = () => {
     console.log(data);
     }
     catch(err){
-      Log("frontend","error","page","Cannot Shorten URL")
+      // Log("frontend","error","page","Cannot Shorten URL")
+      console.error("Cannot Shorten URL")
+    }
   }
 
   return (
-    <div>
+  <div className="url-shortener-container">
       <h1>URL Shortener Page</h1>
 
       <form onSubmit={handleOnSubmit}>
@@ -53,4 +52,5 @@ export const UrlShortener = () => {
       {shortURl && <p>Your shortened URL is: <a href={shortURl} target="_blank" rel="noopener noreferrer">{shortURl}</a></p>}
     </div>
   )
+
 }
