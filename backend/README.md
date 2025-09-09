@@ -1,4 +1,6 @@
 
+Create a .env file and add the MONGODB_URL environmental variable to connect to database.
+
 Postman Screeshots
 
 Create URL request
